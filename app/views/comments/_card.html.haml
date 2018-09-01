@@ -1,0 +1,15 @@
+.card
+  .card-image
+    %p
+      = image_tag comment.picture, alt: "picture" if comment.picture.present?
+  .card-content
+    %p
+      %span 投稿者
+      = comment.user.nickname
+      %br
+      = comment.text
+  .card-action
+    = link_to 'show', "/comments/#{comment.id}", method: :get , class: "waves-effect waves-light btn"
+    - if user_signed_in? && comment.user_id == current_user.id
+      = link_to 'edit', "/comments/#{comment.id}/edit", method: :get, class: "waves-effect waves-light btn"
+      = link_to 'delete', "/comments/#{comment.id}", method: :delete, class: "waves-effect waves-light btn"

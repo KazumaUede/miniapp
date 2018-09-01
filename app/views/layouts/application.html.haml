@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Miniapp
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %nav
+      .nav-wrapper
+        %a.brand-logo{:href => "/comments"} ミニアプリ
+        %ul#nav-mobile.right.hide-on-med-and-down
+          -if user_signed_in?
+            %li
+              = link_to "ログアウト", destroy_user_session_path, method: :delete
+            %li
+              %a{:href => "/comments/new"} 投稿する
+          -else
+            %li
+              = link_to "新規登録", new_user_registration_path, class: 'post'
+            %li
+              = link_to "ログイン", new_user_session_path, class: 'post'
+
+    = yield

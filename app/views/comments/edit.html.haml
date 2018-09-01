@@ -1,0 +1,7 @@
+.container
+  = form_for(@comment, url: comment_path(@comment)) do |f|
+    %h3
+      編集する
+    = f.file_field :picture
+    = f.text_area :text
+    = f.submit :patch, :class=>"waves-effect waves-light btn"

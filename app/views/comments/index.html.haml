@@ -1,0 +1,7 @@
+.container
+  - @comments.each do |comment|
+    = render partial: "card", locals: { comment: comment }
+.footer
+  = paginate(@comments)
+
+%script{:src => "./app.js", :type => "text/javascript"}
